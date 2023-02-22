@@ -26,7 +26,7 @@
 */
 
 /* Features */
-#define PG_BACKEND		/* PostgresSQL backend */
+/* #define PG_BACKEND		/* PostgresSQL backend */
 #define DB "dbname=somedb user=someuser password=somepass";
 /* #define SA_CACHE		/* Keep an SA Cache */
 /* #define DNSLOOKUP		/* attempt to resolv things, not recommended */
@@ -54,6 +54,9 @@
 #include <signal.h>
 #include <errno.h>
 #include <pthread.h>
+#include <stdlib.h>
+#include <arpa/inet.h>
+#include <strings.h>
 #ifdef PG_BACKEND
 #include <libpq-fe.h>
 PGconn	*dbh;
@@ -493,7 +496,6 @@ int msdp_send_msg_all(struct peer *rpf, void *msg, size_t sz) {
 		p=p->n;
 	}
 }
-
 int msdp_sigkeepalive(int sig, int code, struct sigcontext *scp) {
 	struct peer *p;
 

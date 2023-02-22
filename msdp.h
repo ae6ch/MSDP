@@ -1,5 +1,3 @@
-
-
 #define STATE_CONNECTED		1	/* Connection Established */
 #define STATE_ACTIVE		2	/* Trying to Connect */
 #define STATE_LISTEN		3	/* Listening for connection */
@@ -80,11 +78,13 @@ struct peer {			/* Peering Sessions */
 };
 
 /* proto's */
+#ifdef PG_BACKEND
 PGconn *db_init();
+#endif
+
 int msdp_send_keepalive(struct peer *p);
 int msdp_send_msg(struct peer *p, void *msg, size_t sz);
 int msdp_send_msg_all(struct peer *rpf, void *msg, size_t sz);
-int msdp_sigkeepalive(int sig, int code, struct sigcontext *scp);
 int msdp_print_peers();                        
 int msdp_loop();
 int connect_socket(char *hostname, int portnum); 
@@ -101,5 +101,4 @@ char *nslookup(u_long addr);
 uint8_t read8(struct peer *p);
 uint16_t read16(struct peer *p);
 uint32_t read32(struct peer *p);
-
 
