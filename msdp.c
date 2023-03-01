@@ -407,6 +407,8 @@ int msdp_msg_loop(struct peer *p) {	/* return 0 if no errors in proccess */
 		/******  Attempt to recover from unknown type **********
 		 * This works because atleast as of now, all the TLV's *
 		 * have the length of the TLV right after the type     *
+		 * 3/1/23 - I realized later that no one probably got  *
+		 * this joke                                           *
   		 *******************************************************/
 		unklen=ntohs(read16(p));
 		if (p->st != STATE_CONNECTED) return(1);
